@@ -33,24 +33,26 @@ $ node -v
 $ npm install --global gulp-cli
 ```
 
-#### 4. Initialize your project directory:
+#### 4. Clone this repository:
 
 ```sh
-$ npm init
+$ git clone git@github.com:sadullaeva/frontend-2016-lecture-05.git
 ```
 
-#### 5. Install gulp in your project devDependencies:
+#### 5. Go to project's folder:
 
 ```sh
-$ npm install --save-dev gulp
+$ cd frontend-2016-lecture-05
 ```
 
-#### 6. Create a gulpfile.js at the root of your project:
+#### 6. Install packages:
 
-```js
-var gulp = require('gulp');
+```sh
+$ npm install
+```
 
-gulp.task('default', function() {
-  // place code for your default task here
-});
+#### 7. Run application:
+
+```sh
+$ gulp
 ```
