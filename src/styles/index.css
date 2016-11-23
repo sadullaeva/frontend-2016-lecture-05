@@ -8,7 +8,7 @@
 }
 
 .bg-img {
-  background: url(/images/yoda.jpg) left center no-repeat;
+  background: url(../images/yoda.jpg) left center no-repeat;
   background-size: 300px auto;
   height: 188px;
 }
@@ -19,7 +19,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
 
          .bg-img {
-           background-image: url(/images/yoda@2x.jpg);
+           background-image: url(../images/yoda@2x.jpg);
          }
 
 }
