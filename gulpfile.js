@@ -1,12 +1,17 @@
 var gulp = require('gulp');
 var nunjucks = require('gulp-nunjucks');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
+var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 
 var path = {
     css:  'src/styles/*.css',
     html: 'src/templates/*.html',
-    vendor: 'src/vendor/*',
+    vendor: {
+      css: 'src/vendor/css/*.css'
+    },
     img: 'src/images/*',
     dist: {
       css:  'dist/styles/',
@@ -16,13 +21,27 @@ var path = {
     }
 };
 
-gulp.task('default', ['build', 'serve', 'watch']);
+gulp.task('default', ['prod', 'serve', 'watch']);
 
 gulp.task('css', function () {
   return gulp.src(path.css)
+    .pipe(autoprefixer({
+        browsers: ['last 4 versions']
+    }))
     .pipe(concat('style.css'))
     .pipe(gulp.dest(path.dist.css));
 });
+
+gulp.task('css-min', function () {
+  return gulp.src(path.css)
+    .pipe(autoprefixer({
+        browsers: ['last 4 versions']
+    }))
+    .pipe(concat('style.css'))
+    .pipe(cssmin())
+    .pipe(gulp.dest(path.dist.css));
+});
+
 
 gulp.task('html', function () {
   return gulp.src(path.html)
@@ -35,17 +54,26 @@ gulp.task('img', function () {
     .pipe(gulp.dest(path.dist.img));
 });
 
-gulp.task('vendor', function () {
-  return gulp.src(path.vendor)
+gulp.task('vendor-css', function () {
+  return gulp.src(path.vendor.css)
+    .pipe(concat('vendor.css'))
     .pipe(gulp.dest(path.dist.vendor));
 });
 
-gulp.task('build', ['html', 'css', 'vendor', 'img']);
+gulp.task('vendor-css-min', function () {
+  return gulp.src(path.vendor.css)
+    .pipe(concat('vendor.css'))
+    .pipe(cssmin())
+    .pipe(gulp.dest(path.dist.vendor));
+});
+
+gulp.task('build', ['html', 'css', 'vendor-css', 'img']);
+gulp.task('prod', ['html', 'css-min', 'vendor-css-min', 'img']);
 
 gulp.task('watch', function () {
   gulp.watch(path.css, ['css']);
   gulp.watch(path.html, ['html']);
-  gulp.watch(path.vendor, ['vendor']);
+  gulp.watch(path.vendor.css, ['vendor-css']);
   gulp.watch(path.img, ['img']);
 });
 
