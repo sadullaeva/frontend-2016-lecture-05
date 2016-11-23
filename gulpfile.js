@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var nunjucks = require('gulp-nunjucks');
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
 var cssmin = require('gulp-cssmin');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
@@ -21,7 +20,7 @@ var path = {
     }
 };
 
-gulp.task('default', ['prod', 'serve', 'watch']);
+gulp.task('default', ['build', 'serve', 'watch']);
 
 gulp.task('css', function () {
   return gulp.src(path.css)
