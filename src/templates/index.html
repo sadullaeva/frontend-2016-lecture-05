@@ -2,6 +2,18 @@
 
 {% block main %}
 <main class="main">
-  Main content
+  <h2>Main content</h2>
+  <figure>
+    <img srcset="/images/yoda.jpg 1x, /images/yoda@2x.jpg 2x"/>
+    <figcaption>
+      Это изображение вставлено тэгом <code>&lt;img&gt;</code>
+    </figcaption>
+  </figure>
+  <figure>
+    <div class="bg-img"></div>
+    <figcaption>
+      Это изображение вставлено свойством <code>background</code>
+    </figcaption>
+  </figure>
 </main>
 {% endblock %}
