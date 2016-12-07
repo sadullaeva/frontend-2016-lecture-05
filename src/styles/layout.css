@@ -4,6 +4,15 @@ body {
   color: #434343;
 }
 
+.clearfix:after {
+  display: block;
+  content: ' ';
+  clear: both;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
 .header {
 
 }
